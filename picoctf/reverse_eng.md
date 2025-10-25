@@ -1,11 +1,3 @@
-
-## Resources:
-
-- Include the resources you've referred to with links. [example hyperlink](https://google.com)
-
-
-***
-
 # 1. GDB Baby Step 1
 
 >  Can you figure out what is in the eax register at the end of the main function? Put your answer in the picoCTF flag format: picoCTF{n} where n is the contents of the eax register in the decimal number base. If the answer was 0x11 your flag would be picoCTF{17}.
@@ -26,14 +18,11 @@ picoCTF{549698}
 
 # 2. ArmAssembly 1 
 
-> [!NOTE]
-> Curretly a WIP(too much to learn about assembly :p)
 > For what argument does this program print `win` with variables 81, 0 and 3? File: chall_1.S Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
 
 ## Solution:
 
 1. We open the arm file in an text editor.
-2. 
 
 ```asm
 func:
@@ -104,3 +93,41 @@ Basics for Arm asembly
 - I still dont fully understnad what's happening the main function, would need to study more about stack frames and such.
   Resources:
 - [Anu School of Computing Arm Cheatsheet](https://comp.anu.edu.au/courses/comp2300/resources/03-ARM-cheat-sheet/)
+
+# 3. vault-door-3
+
+> This vault uses for-loops and byte arrays. The source code for this vault is here: VaultDoor3.java
+
+## Solution:
+
+- Include as many steps as you can with your thought process
+- You **must** include images such as screenshots wherever relevant.
+
+```
+put codes & terminal outputs here using triple backticks
+
+you may also use ```python for python codes for example
+```
+
+## Flag:
+
+```
+pcoCTF{}
+```
+
+## Concepts learnt:
+
+- Include the new topics you've come across and explain them in brief
+- 
+
+## Notes:
+
+- Include any alternate tangents you went on while solving the challenge, including mistakes & other solutions you found.
+- 
+
+## Resources:
+
+- Include the resources you've referred to with links. [example hyperlink](https://google.com)
+
+
+***
