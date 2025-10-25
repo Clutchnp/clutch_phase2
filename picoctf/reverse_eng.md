@@ -62,7 +62,7 @@ func:
     ```
 In this we see that:
 1. 32 bytes are reserved on the stack pointer
-2. We store the value in the w0 register to 12th offset in the stack 
+2. We store the value in the w0 register to 12th offset in the stack  // store the input arg in sp[12]
 3. We move 81 to w0 register 
 4. We store w0 to the 16th offset of the stack meaning we store 81 to 16th offset 
 5. We store zero to 20th offset
@@ -70,33 +70,34 @@ In this we see that:
 7. move w0(3) to 24th offset 
 8. We load the value on 20th offset to w0
 9. We load the value on 16th offset to w1
-10. We left shift the value on w1 by value on w0 and store it in w0
-11. store the result of the shift on 28th offset 
-12. load the value on 28th offset to w1 register 
-13. load the value on 24th offset to w0 register 
+10. We left shift the value on w1 by value on w0 and store it in w0 which is 81 << 0
+11. store the result of the shift on 28th offset  stack[28] = 81
+12. load the value on 28th offset to w1 register w1 = 81
+13. load the value on 24th offset to w0 register  w0 = 3
 14. then divide w1 by w0 and store it in w0  since it is sdiv (signed
-    integer division) we truncate the decimal 
+    integer division) we truncate the decimal w0 becomes 27
 15. store that value on 28th offset 
 16. laod that on w1 register 
 17. load what was in the 12th register to w0 
 18. store what was on w0 to 28th 
 19. immediately load it again to w0 for some reason 
+20. then we sub w1 by w0 and store result in w0. w0 = 27-w0 
+21. Store w0 to 28th offset 
 20. then free the stack and return from the function 
 
-We can understand what is happening from this explanation 
-
+so we know 27-input = 0 is checked for success, so the input should we 27 to get the result 
+so 
 
 
 ## Flag:
 
 ```
-picoCTF{}
+picoCTF{0000001B}
 ```
 
 ## Concepts learnt:
 
-- Include the new topics you've come across and explain them in brief
-- 
+Basics for Arm asembly
 
 ## Notes:
 
