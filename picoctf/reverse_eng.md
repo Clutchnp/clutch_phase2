@@ -48,7 +48,7 @@ func:
 	ldr	w0, [sp, 28]
 	add	sp, sp, 32
     ret 
-    ```
+```
 In this we see that:
 1. 32 bytes are reserved on the stack pointer
 2. We store the value in the w0 register to 12th offset in the stack  // store the input arg in sp[12]
@@ -100,34 +100,25 @@ Basics for Arm asembly
 
 ## Solution:
 
-- Include as many steps as you can with your thought process
-- You **must** include images such as screenshots wherever relevant.
+We are given some java code which basically obfuscates the real password and we are given the obfuscated password which is "jU5t_a_sna_3lpm18gb41_u_4_mfr340" we can create a python script that reverses the operations performed in java code to get the real password for the vault. Here's the script that I wrote for the same.
+```py
+a = "jU5t_a_sna_3lpm18gb41_u_4_mfr340"
+b = ["0"]*32
+for x in range(17,32,2):
+    b[x] = a[x]
+for x in range(16,32,2):
+    b[x] = a[46-x]
+for x in range(8,16,1):
+    b[x] = a[23-x]
+for x in range(0,8):
+    b[x] = a[x]
 
-```
-put codes & terminal outputs here using triple backticks
-
-you may also use ```python for python codes for example
+print("".join(b))
 ```
 
 ## Flag:
 
 ```
-pcoCTF{}
+picoCTF{jU5t_a_s1mpl3_an4gr4m_4_u_1fb380}
 ```
 
-## Concepts learnt:
-
-- Include the new topics you've come across and explain them in brief
-- 
-
-## Notes:
-
-- Include any alternate tangents you went on while solving the challenge, including mistakes & other solutions you found.
-- 
-
-## Resources:
-
-- Include the resources you've referred to with links. [example hyperlink](https://google.com)
-
-
-***
