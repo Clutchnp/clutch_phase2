@@ -14,7 +14,50 @@
 ```
 picoCTF{549698}
 ```
+## Alternate Method
 
+We can do this as the question intended via gdb we can break at main and then do stepi until the value in the rax register changes
+
+```
+(gdb) break main
+Breakpoint 1 at 0x1131
+(gdb) run 
+Starting program: /home/clutch/programming/cryptonite/programs/debugger0_a 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+
+Breakpoint 1, 0x0000555555555131 in main ()
+(gdb) info register rax
+rax            0x7ffff7e10e28      140737352109608
+```
+
+we do this 3 times until the value changes
+```
+(gdb) stepi
+0x000055555555513d in main ()
+(gdb) info register rax
+rax            0x86342             549698
+(gdb) 
+```
+or we can also just disassemble main using gdb
+```
+Dump of assembler code for function main:
+   0x0000555555555129 <+0>:	endbr64
+   0x000055555555512d <+4>:	push   %rbp
+   0x000055555555512e <+5>:	mov    %rsp,%rbp
+   0x0000555555555131 <+8>:	mov    %edi,-0x4(%rbp)
+=> 0x0000555555555134 <+11>:	mov    %rsi,-0x10(%rbp)
+   0x0000555555555138 <+15>:	mov    $0x86342,%eax
+   0x000055555555513d <+20>:	pop    %rbp
+   0x000055555555513e <+21>:	ret
+End of assembler dump.
+```
+
+Here we see the `mov $0x86342, %eax` which moves the value to eax and that must be our ans
+## Concepts Learnt
+ - gdb basics
+
+***
 
 # 2. ArmAssembly 1 
 
