@@ -1,4 +1,46 @@
-# 1. tunnel_vision
+# 1. Trivial Flag Transfer Protocol
+
+> Figure out how they moved the flag.
+
+## Solution:
+
+- First I downloaded the lower version of wireshark. I use arch so in the official repo's it 4.6.x and as mentioned in the group all the things can't be seen when we use this version,
+- so I use dowgrade to go to the lower version i.e. 4.4.6 
+- then since the major packets are of tftp I tried to extract tftp data from wireshark
+
+![tftp_show](assets/tftp%20show.png)
+![content_tftp](assets/content_tftp.png)
+
+in the extracted files what  we see are 2 rot13 encoded files 
+1st one was instructions.txt
+which after decoding said:
+
+TFTPDOESNTENCRYPTOURTRAFFICSOWEMUSTDISGUISEOURFLAGTRANSFER.FIGUREOUTAWAYTOHIDETHEFLAGANDIWILLCHECKBACKFORTHEPLAN
+
+as the instructions said I checked out the plan file and also decoded it with rot13 from which I get 
+
+IUSEDTHEPROGRAMANDHIDITWITH-DUEDILIGENCE.CHECKOUTTHEPHOTOS
+the `-` before duediligince gives the hint that it means something 
+
+so we also get a deb package, which was a hassle to use since I use arch btw, so I had to install dpkg-deb to extract the contents to inspect them,
+where I saw steghide as a binary, but it didnt work on arch, so I  had  to install steghide from aur repos, and used steghide on all the images using the password as DUEDILIGENCE from where the third image gave the flag  in flag.txt 
+## Flag:
+
+```
+picoCTF{h1dd3n_1n_pLa1n_51GHT_18375919}
+```
+
+## Concepts learnt:
+
+- How to Inspect Debian Packages on arch 
+
+## Notes:
+
+- Tried to Use online steghide tools when the included binary didn't work to decode the images, but they give giberish so had to install steghide from aur
+
+***
+
+# 2. tunnel_vision
 
 > We found this file. Recover the flag.
 
@@ -25,7 +67,7 @@ picoCTF{qu1t3_a_v13w_2020}
 
 ***
 
-# 1. m00nwalk
+# 3. m00nwalk
 
 > Decode this message from the moon.
 
