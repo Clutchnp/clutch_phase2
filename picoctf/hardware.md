@@ -1,3 +1,24 @@
+# 1. iq_test
+
+> let your input x = 30478191278.
+
+wrap your answer with nite{ } for the flag.
+
+As an example, entering x = 34359738368 gives (y0, ..., y11), so the flag would be nite{010000000011}.
+
+## Solution:
+
+We have been given an integer we would have to convert this to binary 
+which is 11100011000101001000100101010101110 but this is only 35 digits we pad the beginning with 0 
+to make it 36 then I hand calculated it T_T (felt like an eternity) ( did it one time wrong even)
+
+## Flag:
+
+```
+nite{100010011001}
+```
+***
+
 
 # 2. I like Logic
 
@@ -314,7 +335,7 @@ TFCCTF{Th1s_1s_som3_s1mpl3_4rdu1no_f1rmw4re}
 ```
 
 ## Concepts learnt:
-
+- I still dont know what's happening completely there guess  got a lot to learn :(
 - arduino code 
 - some more genereal things
 
